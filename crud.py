@@ -22,7 +22,7 @@ def update_todo(db: Session, todo_id: int, todo: TodoUpdate):
     db_todo = db.query(Todo).filter(Todo.id == todo_id).first()
 
     if db_todo:
-        for key, value in todo.model_dump(exclude_unset=True).items():
+        for key, value in todo.model_dump(exclude_unset = True).items():
             setattr(db_todo, key, value)
 
         db.commit()
@@ -43,7 +43,7 @@ def delete_todo(db: Session, todo_id: int):
 
 def create_user(db: Session, user: UserCreate):
     hashed_password = get_password_hash(user.password)
-    db_user = User(username=user.username, email=user.email, hashed_password=hashed_password)
+    db_user = User(username = user.username, email = user.email, hashed_password = hashed_password)
 
     db.add(db_user)
     db.commit()

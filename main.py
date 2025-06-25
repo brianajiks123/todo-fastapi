@@ -38,7 +38,7 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
 
     return create_user(db, user)
 
-@app.post("/token", response_model = Token)
+@app.post("/login", response_model = Token)
 def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = get_user_by_username(db, username = form_data.username)
 
